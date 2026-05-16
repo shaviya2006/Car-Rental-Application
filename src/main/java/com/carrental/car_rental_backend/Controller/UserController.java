@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000") // Allow requests from React app
+@CrossOrigin(origins = "http://localhost:5173") // Allow requests from React app
 public class UserController {
 
     private final UserService userService;
