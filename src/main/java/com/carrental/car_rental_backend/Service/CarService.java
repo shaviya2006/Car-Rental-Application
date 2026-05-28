@@ -62,6 +62,9 @@ public class CarService {
         car.setModel(carDetails.getModel());
         car.setYear(carDetails.getYear());
         car.setDailyPrice(carDetails.getDailyPrice());
+        car.setFuelType(carDetails.getFuelType());
+        car.setType(carDetails.getType());
+        car.setImageUrl(carDetails.getImageUrl());
         car.setStatus(carDetails.getStatus());
 
         Car updated = carRepository.save(car);
@@ -83,6 +86,7 @@ public class CarService {
                 car.getDailyPrice(),
                 car.getFuelType(),
                 car.getType(),
+                car.getImageUrl(),
                 car.getStatus().toString()
         );
     }

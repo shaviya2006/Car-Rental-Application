@@ -16,5 +16,6 @@ public class CarDTO {
     private BigDecimal dailyPrice;
     private String fuelType;
     private String type;
+    private String imageUrl;
     private String status;
 }

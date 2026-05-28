@@ -35,6 +35,8 @@ public class Car {
 
     private String type;
 
+    private String imageUrl;
+
     @Enumerated(EnumType.STRING)
     private CarStatus status = CarStatus.AVAILABLE;
 
