@@ -53,6 +53,14 @@ public class BookingService {
     }
 
 
+    public List<BookingDTO> getAllBookings() {
+        return bookingRepository.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+
     public List<BookingDTO> getUserBookings(Integer userId) {
         return bookingRepository.findByUserId(userId)
                 .stream()
@@ -129,6 +137,8 @@ public class BookingService {
                 booking.getId(),
                 booking.getUser().getId(),
                 booking.getCar().getId(),
+                booking.getCar().getBrand(),
+                booking.getCar().getModel(),
                 booking.getStartDate(),
                 booking.getEndDate(),
                 booking.getStatus().toString(),

@@ -5,6 +5,7 @@ import com.carrental.car_rental_backend.dto.UserDTO;
 import com.carrental.car_rental_backend.entity.User;
 import com.carrental.car_rental_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
     public UserDTO registerUser(User user) {
@@ -23,7 +25,8 @@ public class UserService {
             throw new RuntimeException("Email already registered");
         }
 
-
+        // Hash the password before saving
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User savedUser = userRepository.save(user);
         return convertToDTO(savedUser);
@@ -34,8 +37,8 @@ public class UserService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-
-        if (!user.getPassword().equals(password)) {
+        // Verify password using BCrypt
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Invalid password");
         }
 
@@ -85,3 +88,4 @@ public class UserService {
         );
     }
 }
+

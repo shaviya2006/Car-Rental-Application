@@ -16,6 +16,8 @@ public class BookingDTO {
     private Integer id;
     private Integer userId;
     private Integer carId;
+    private String carBrand;
+    private String carModel;
 
     private LocalDate startDate;
     private LocalDate endDate;
@@ -24,3 +26,4 @@ public class BookingDTO {
 
     private BigDecimal totalAmount;
 }
+

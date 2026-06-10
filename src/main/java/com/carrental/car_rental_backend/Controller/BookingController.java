@@ -13,10 +13,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bookings")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
 public class BookingController {
 
     private final BookingService bookingService;
+
+
+    @GetMapping
+    public ResponseEntity<List<BookingDTO>> getAllBookings() {
+        List<BookingDTO> bookings = bookingService.getAllBookings();
+        return new ResponseEntity<>(bookings, HttpStatus.OK);
+    }
 
 
     @PostMapping
